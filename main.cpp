@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "Subject.h"
 
@@ -6,11 +7,27 @@ using namespace std;
 
 int main() {
     int loginChoice;
+    int adminChoice;
+    int subjectsChoice;
+    int classesChoice;
+    int studentsChoice;
+    int teachersChoice;
+    int a = 0, x;
+    int subjectID;
+    string subjectName;
+    char subjectType;
+    vector <Subject> newSubjects;
+    vector <int> :: iterator i;
+    vector <int> :: reverse_iterator ir;
+
+    void addSubject();
+
     bool menu = true;
 
     while (menu)
     {
-        cout << "1. School Admin Login\n"
+        cout << "\n====================MAIN MENU====================\n"
+                "1. School Admin Login\n"
                 "2. School Teacher Login\n"
                 "3. Exit\n"
                 "Enter your choice: ";
@@ -25,7 +42,6 @@ int main() {
                         "3. STUDENTS\n"
                         "Enter your choice: ";
 
-                int adminChoice;
 
                 cin >> adminChoice;
 
@@ -38,18 +54,12 @@ int main() {
                                 "4. Exit\n"
                                 "Enter your choice: ";
 
-                        int subjectsChoice;
-                        int i = 0;
 
                         cin >> subjectsChoice;
 
                         switch(subjectsChoice){
                             case 1:
-                                Subject newSubjects[100];
-
-                                int subjectID;
-                                string subjectName;
-                                char subjectType;
+                                cout << "*ADDING NEW SUBJECT*" << endl;
 
                                 cout << "Enter Subject ID: ";
                                 cin >> subjectID;
@@ -58,14 +68,25 @@ int main() {
                                 cout << "Enter Subject Type(Core/Selective): ";
                                 cin >> subjectType;
 
-                                newSubjects[i].setSubjectID(subjectID);
-                                newSubjects[i].setSubjectName(subjectName);
-                                newSubjects[i].setSubjectType(subjectType);
+                                newSubjects.push_back(Subject(subjectID, subjectName, subjectType));
+
+                                cout << "Subject ID: " << newSubjects[a].getSubjectID() << endl;
+                                cout << "Subject Name: " << newSubjects[a].getSubjectName() << endl;
+                                cout << "Subject Type: " << newSubjects[a].getSubjectType() << endl;
+                                cout << "Subject succesfully added!" << endl;
 
 
-
+                                a++;
                                 break;
                             case 2:
+                                cout << "*MODIFYING SUBJECT*" << endl;
+
+                                for (x = 0; x < newSubjects.size(); x++){
+                                    cout << "Subject ID: " << newSubjects[x].getSubjectID() << " | Subject Name: " << newSubjects[x].getSubjectName() << endl;
+                                }
+
+
+
                                 break;
                             case 3:
                                 break;
@@ -84,7 +105,6 @@ int main() {
                                 "4. Exit\n"
                                 "Enter your choice: ";
 
-                        int classesChoice;
 
                         cin >> classesChoice;
 
@@ -112,8 +132,6 @@ int main() {
                                 "4. Exit\n"
                                 "Enter your choice: ";
 
-                        int studentsChoice;
-
                         cin >> studentsChoice;
 
                         switch(studentsChoice){
@@ -130,13 +148,11 @@ int main() {
                         }
                         break;
 
-
                     default:
                         cout << "Invalid choice!\n";
                         break;
 
                 }
-
                 break;
 
             case 2:
@@ -147,7 +163,6 @@ int main() {
                         "4. Exit\n"
                         "Enter your choice: ";
 
-                int teachersChoice;
 
                 cin >> teachersChoice;
 
@@ -185,4 +200,9 @@ int main() {
     }
 
     return 0;
+}
+
+void addSubject(){
+
+    cout << "FUk";
 }
