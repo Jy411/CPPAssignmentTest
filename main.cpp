@@ -6,16 +6,11 @@
 using namespace std;
 
 int main() {
-    int loginChoice;
-    int adminChoice;
-    int subjectsChoice;
-    int classesChoice;
-    int studentsChoice;
-    int teachersChoice;
+    int loginChoice, adminChoice, subjectsChoice, classesChoice ,studentsChoice, teachersChoice;
     int a = 0, x;
-    int subjectID;
-    string subjectName;
-    char subjectType;
+    int subjectID, modifySubject, newSubjectID;
+    string subjectName, newSubjectName;
+    char subjectType, newSubjectType;
     vector <Subject> newSubjects;
     vector <int> :: iterator i;
     vector <int> :: reverse_iterator ir;
@@ -60,6 +55,7 @@ int main() {
                         switch(subjectsChoice){
                             case 1:
                                 cout << "*ADDING NEW SUBJECT*" << endl;
+                                cout << "===================\n";
 
                                 cout << "Enter Subject ID: ";
                                 cin >> subjectID;
@@ -80,15 +76,37 @@ int main() {
                                 break;
                             case 2:
                                 cout << "*MODIFYING SUBJECT*" << endl;
-
+                                cout << "===================\n";
                                 for (x = 0; x < newSubjects.size(); x++){
                                     cout << "Subject ID: " << newSubjects[x].getSubjectID() << " | Subject Name: " << newSubjects[x].getSubjectName() << endl;
                                 }
 
+                                cout << "Enter Subject ID to modify: ";
+                                cin >> modifySubject;
 
+                                for (x = 0; x < newSubjects.size(); x++){
+                                    // goes through array of subjects and finds matching subject ID
+                                    if (modifySubject == newSubjects[x].getSubjectID()){
+                                        cout << "NEW Subject ID: ";
+                                        cin >> newSubjectID;
+                                        newSubjects[x].setSubjectID(newSubjectID);
+                                        cout << "NEW Subject Name ";
+                                        cin >> newSubjectName;
+                                        newSubjects[x].setSubjectName(newSubjectName);
+                                        cout << "New Subject Type(Core/Selective): ";
+                                        cin >> newSubjectType;
+                                        newSubjects[x].setSubjectType(newSubjectType);
+                                        cout << "Subject modified successfully!\n";
+                                        cout << "Subject ID: " << newSubjects[x].getSubjectID() << " | Subject Name: " << newSubjects[x].getSubjectName() << endl;
+
+                                    }
+                                }
 
                                 break;
                             case 3:
+                                cout << "*REMOVING SUBJECT*" << endl;
+                                cout << "===================\n";
+
                                 break;
                             case 4:
                                 break;
