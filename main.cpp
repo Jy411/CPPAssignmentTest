@@ -62,6 +62,15 @@ int main() {
                                 cout << "*ADDING NEW SUBJECT*" << endl;
                                 cout << "===================\n";
 
+                                //==== PRINTS A TABLE SHOWING ALL THE SUBJECTS IN THE RECORD ===//
+                                cout << "============================================================\n";
+                                for (x = 0; x < newSubjects.size(); x++){
+                                    cout << "Subject ID: " << newSubjects[x].getSubjectID() << " | Subject Name: " << newSubjects[x].getSubjectName()
+                                         << " | Subject Type: " << newSubjects[x].getSubjectType() << endl;
+                                }
+                                cout << "============================================================\n\n";
+
+
                                 cout << "Enter Subject ID: ";
                                 cin >> subjectID;
                                 //==== WHILE INPUT IS NOT AN INTEGER ====//
@@ -72,16 +81,25 @@ int main() {
                                     cout << "Please enter a valid ID: ";
                                     cin >> subjectID;
                                 }
-                                //== CHECKS VECTOR TO SEE IF SUBJECT ID EXISTS ==//
+
+                                //== CHECKS VECTOR TO SEE IF SUBJECT ID EXISTS ALREADY ==//
                                 for (x = 0; x < newSubjects.size(); x++){
                                     if (subjectID == newSubjects[x].getSubjectID()){
                                         cout << "Subject ID already exists!\n";
-                                        cout << "Please enter ID again: ";
+                                        cout << "Please enter a unique ID: ";
                                         cin >> subjectID;
+                                        //==== WHILE INPUT IS NOT AN INTEGER ====//
+                                        while (cin.fail()){
+                                            cout << "ERROR: ID can only consist of numbers!\n";
+                                            cin.clear();
+                                            cin.ignore(256,'\n');
+                                            cout << "Please enter a valid ID: ";
+                                            cin >> subjectID;
+                                        }
                                         break;
                                     }
                                     else{
-                                        break;
+
                                     }
                                 }
 
@@ -121,7 +139,7 @@ int main() {
                                 cin >> modifySubject;
                                 //==== WHILE INPUT IS NOT AN INTEGER ====//
                                 while (cin.fail()){
-                                    cout << "Enter a valid ID!\n";
+                                    cout << "ERROR: ID can only consist of numbers!\n";
                                     cin.clear();
                                     cin.ignore(256,'\n');
                                     cout << "Please enter a valid ID: ";
@@ -137,7 +155,7 @@ int main() {
                                         cin >> newSubjectID;
                                         //==== WHILE INPUT IS NOT AN INTEGER ====//
                                         while (cin.fail()){
-                                            cout << "Enter a valid ID!\n";
+                                            cout << "ERROR: ID can only consist of numbers!\n";
                                             cin.clear();
                                             cin.ignore(256,'\n');
                                             cout << "Please enter a valid ID: ";
@@ -179,7 +197,7 @@ int main() {
                                 cin >> removeSubjectID;
                                 //==== WHILE INPUT IS NOT AN INTEGER ====//
                                 while (cin.fail()){
-                                    cout << "Enter a valid ID!\n";
+                                    cout << "ERROR: ID can only consist of numbers!\n";
                                     cin.clear();
                                     cin.ignore(256,'\n');
                                     cout << "Please enter a valid ID: ";
@@ -192,6 +210,13 @@ int main() {
                                     if (removeSubjectID == newSubjects[x].getSubjectID()) {
                                         newSubjects.erase(newSubjects.begin() + x);
                                         cout << "Subject successfully removed!\n";
+                                    }
+                                    else{
+                                        cout << "Subject does not exist!\n";
+                                        cout << "Enter a valid ID: ";
+                                        cin.clear();
+                                        cin >> removeSubjectID;
+
                                     }
                                 }
 
