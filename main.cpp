@@ -162,13 +162,17 @@ int main() {
                                             cin >> newSubjectID;
                                         }
                                         newSubjects[x].setSubjectID(newSubjectID);
-                                        cout << "NEW Subject Name ";
+                                        cout << "NEW Subject Name: ";
                                         cin >> newSubjectName;
                                         newSubjects[x].setSubjectName(newSubjectName);
                                         cout << "New Subject Type(Core/Selective): ";
                                         cin >> newSubjectType;
                                         newSubjects[x].setSubjectType(newSubjectType);
                                         cout << "Subject modified successfully!\n";
+                                    }
+                                    else{
+                                        //IF SUBJECT ID DOES NOT EXIST
+
                                     }
                                 }
 
@@ -212,10 +216,10 @@ int main() {
                                         cout << "Subject successfully removed!\n";
                                     }
                                     else{
-                                        cout << "Subject does not exist!\n";
-                                        cout << "Enter a valid ID: ";
-                                        cin.clear();
-                                        cin >> removeSubjectID;
+//                                        cout << "Subject does not exist!\n";
+//                                        cout << "Enter a valid ID: ";
+//                                        cin.clear();
+//                                        cin >> removeSubjectID;
 
                                     }
                                 }
