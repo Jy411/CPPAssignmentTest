@@ -37,21 +37,5 @@ void Subject::setSubjectType(char subjectType) {
     Subject::subjectType = subjectType;
 }
 
-void Subject::addSubject(int id, string name, char type) {
-//    cout << "What is the subject ID?" << endl << "Enter ID: ";
-//    cin >> id;
-//    cout << "What is the subject name?" << endl << "Enter name: ";
-//    cin >> name;
-//    cout << "What is the subject type(C for Core/S for Selective)?" << endl << "Enter character: ";
-//    cin >> type;
 
-    Subject subject;
-    subject.subjectID = id;
-    subject.subjectName = name;
-    subject.subjectType = type;
-
-    cout << "Subject ID: " << id << endl;
-    cout << "Subject Name: " << name << endl;
-    cout << "Subject Type: " << type << endl;
-}
 

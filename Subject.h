@@ -25,8 +25,6 @@ public:
     void setSubjectName(const string &subjectName);
     char getSubjectType() const;
     void setSubjectType(char subjectType);
-    void addSubject(int id, string name, char type);
-
 
 };
 
