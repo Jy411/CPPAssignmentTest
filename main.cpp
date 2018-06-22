@@ -57,7 +57,7 @@ int main() {
     char subjectType;
 
     // FOR CLASSES
-    int classID, yearForm;
+    int classID, yearForm, yearGradeChoice;
     string className;
     char yearGrade;
 
@@ -364,18 +364,31 @@ int main() {
                                     cout << "Please enter a valid number: ";
                                     cin >> yearForm;
                                 }
-
-                                cout << "Please select grade: \n"
-                                        "1. Lower Secondary\n"
-                                        "2. Upper Secondary Art\n"
-                                        "3. Upper Secondary Science\n";
-                                cin >> yearGrade;
-                                //==== CHECKS IF USER INPUT OF yearGrade(char) IS 1,2, OR 3 ====//
-                                while (! (yearGrade == '1' || yearGrade == '2' || yearGrade == '3')){
-                                    cout << "Please enter (1 - 3) only: ";
-                                    cin >> yearGrade;
+                                if (yearForm == 1 || yearForm == 2 || yearForm == 3){
+                                    yearGrade = '1';
                                 }
+                                else if (yearForm == 4 || yearForm == 5){
+                                    cout << "Please select grade: \n"
+                                            "1. Upper Secondary Art\n"
+                                            "2. Upper Secondary Science\n"
+                                            "> ";
 
+                                    cin >> yearGradeChoice;
+
+                                    while(!(yearGradeChoice == 1 || yearGradeChoice == 2)){
+                                        cout << "Please enter 1 or 2 only!\n"
+                                                "> ";
+
+                                        cin >> yearGradeChoice;
+                                    }
+
+                                    if (yearGradeChoice == 1){
+                                        yearGrade = '2';
+                                    }
+                                    else if (yearGradeChoice == 2){
+                                        yearGrade = '3';
+                                    }
+                                }
 
                                 //==== ADDS SUBJECT OBJECT TO VECTOR ====//
                                 newClasses.push_back(Class(classID, className, yearForm, yearGrade));
@@ -697,10 +710,11 @@ int main() {
                 }
                 break;
             case 2:
-                cout << "\nTeacher Login\n"
+
+                cout << "\n=========Teacher Login==========\n"
                         "1. Search student by name\n"
                         "2. Search student by ID\n"
-                        "3. Show all results(Student name + Subject Score)\n"
+                        "3. Show all results(Student name + Subject Scores)\n"
                         "4. Exit\n"
                         "Enter your choice: ";
 
@@ -709,18 +723,55 @@ int main() {
 
                 switch(teachersChoice){
                     case 1:
+                        // SHOW STUDENT RECORDS
+                        printStudentsTable();
+
                         cout << "\n===========STUDENT NAME==========\n"
                                 "Enter student name: ";
 
-//                        cout << "1. Register student " << studentName  << " to class"
+                        cin >> studentName;
+
+                        for (x = 0; x < newStudents.size(); x++){
+                            if (studentName == newStudents[x].getFullName()){
+                                cout << "||||||STUDENT FOUND||||||\n";
+                                cout << "1. Register Student to class\n"
+                                        "2. Enter subject score\n"
+                                        "3. Modify subject score\n"
+                                        "4. Display student details\n"
+                                        "5. Exit\n";
+                            }
+                            else{
+                                cout << "Student NOT found!\n";
+                            }
+                        }
+
                         break;
                     case 2:
+                        // SHOW STUDENT RECORDS
+                        printStudentsTable();
+
                         cout << "\n===========STUDENT ID==========\n"
                                 "Enter student ID: ";
 
+                        cin >> studentID;
+
+                        for (x = 0; x < newStudents.size(); x++){
+                            if (studentID == newStudents[x].getStudentNo()){
+                                cout << "||||||STUDENT FOUND||||||\n";
+                                cout << "1. Register Student to class\n"
+                                        "2. Enter subject score\n"
+                                        "3. Modify subject score\n"
+                                        "4. Display student details\n"
+                                        "5. Exit\n";
+                            }
+                            else{
+                                cout << "Student NOT found!\n";
+                            }
+                        }
 
                         break;
                     case 3:
+                        // SHOW ALL STUDENT DETAILS(NAME + SUBJECT + SUBJECT SCORES)
                         break;
                     case 4:
                         break;
