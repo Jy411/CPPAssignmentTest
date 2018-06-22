@@ -179,7 +179,6 @@ int main() {
                                 //==== PRINTS A TABLE SHOWING ALL THE SUBJECTS IN THE RECORD ===//
                                 printSubjectsTable();
 
-
                                 break;
                             case 2:
                                 cout << "*MODIFYING SUBJECT RECORDS*" << endl;
@@ -256,7 +255,6 @@ int main() {
                                 //==== PRINTS A TABLE SHOWING ALL THE SUBJECTS IN THE RECORD ===//
                                 printSubjectsTable();
 
-
                                 break;
                             case 3:
                                 cout << "*REMOVING SUBJECT RECORDS*" << endl;
@@ -303,6 +301,8 @@ int main() {
                         }
 
                         break;
+
+                    //============ FOR CLASSES ===============//
                     case 2:
                         cout << "==========CLASSES==========\n";
                         cout << "1. Add\n"
@@ -485,6 +485,8 @@ int main() {
                         }
 
                         break;
+
+                    //============ FOR STUDENTS ===============//
                     case 3:
                         cout << "==========STUDENTS==========\n";
                         cout << "1. Add\n"
