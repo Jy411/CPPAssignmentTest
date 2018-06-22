@@ -3,6 +3,7 @@
 
 #include "Subject.h"
 #include "Class.h"
+#include "Student.h"
 
 using namespace std;
 
@@ -13,6 +14,9 @@ vector <int> :: reverse_iterator ir;
 
 // VECTOR FOR STORING CLASSES
 vector <Class> newClasses;
+
+// VECTOR FOR STORING STUDENTS
+vector <Student> newStudents;
 
 void printSubjectsTable(){
     cout << "============================================================\n";
@@ -32,21 +36,37 @@ void printClassesTable(){
     cout << "============================================================\n\n";
 }
 
+void printStudentsTable(){
+    cout << "============================================================\n";
+    for (int x = 0; x < newStudents.size(); x++){
+        cout << "Student ID: " << newStudents[x].getStudentNo() << " | Student Name: " << newStudents[x].getFullName()
+             << " | Gender: " << newStudents[x].getGender() << endl;
+    }
+    cout << "============================================================\n\n";
+}
+
 int main() {
+    // FOR MENUS
     int loginChoice, adminChoice, subjectsChoice, classesChoice ,studentsChoice, teachersChoice;
-    int x;
+    bool menu = true;
+    bool duplicate = true;
+
     // FOR SUBJECTS
     int subjectID;
     string subjectName;
     char subjectType;
+
     // FOR CLASSES
     int classID, yearForm;
     string className;
     char yearGrade;
 
-    //MENUS
-    bool menu = true;
-    bool duplicate = true;
+    // FOR STUDENTS
+    int studentID;
+    string studentName;
+    char studentGender;
+
+    int x;
 
     while (menu)
     {
@@ -119,15 +139,37 @@ int main() {
                                             cout << "Please enter a valid ID: ";
                                             cin >> subjectID;
                                         }
-
                                     }
-
                                 }
 
                                 cout << "Enter Subject Name: ";
                                 cin >> subjectName;
                                 cout << "Enter Subject Type(Core/Selective): ";
                                 cin >> subjectType;
+                                while (cin.fail()){
+                                    cout << "ERROR: Enter a single character\n";
+                                    cin.clear();
+                                    cin.ignore(256,'\n');
+                                    cout << "Enter again: ";
+                                    cin >> subjectType;
+                                }
+                                // CHECKS IF subjectType IS EITHER C or S
+                                duplicate = true;
+                                while(duplicate){
+                                    if (subjectType == 'C' || subjectType == 'S'){
+                                        duplicate = false;
+                                    }
+                                    else{
+                                        while (!(subjectType == 'C' || subjectType == 'S')){
+                                            cout << "Please enter either C or S: ";
+                                            cin.clear();
+                                            cin >> subjectType;
+                                            if (subjectType == 'C' || subjectType == 'S'){
+                                                duplicate = false;
+                                            }
+                                        }
+                                    }
+                                }
 
                                 //==== ADDS SUBJECT OBJECT TO VECTOR ====//
                                 newSubjects.push_back(Subject(subjectID, subjectName, subjectType));
@@ -177,6 +219,31 @@ int main() {
                                         newSubjects[x].setSubjectName(subjectName);
                                         cout << "NEW Subject Type(Core/Selective): ";
                                         cin >> subjectType;
+                                        while (cin.fail()){
+                                            cout << "ERROR: Enter a single character\n";
+                                            cin.clear();
+                                            cin.ignore(256,'\n');
+                                            cout << "Enter again: ";
+                                            cin >> subjectType;
+                                        }
+                                        // CHECKS IF subjectType IS EITHER C or S
+                                        duplicate = true;
+                                        while(duplicate){
+                                            if (subjectType == 'C' || subjectType == 'S'){
+                                                duplicate = false;
+                                            }
+                                            else{
+                                                while (!(subjectType == 'C' || subjectType == 'S')){
+                                                    cout << "Please enter either C or S: ";
+                                                    cin.clear();
+                                                    cin >> subjectType;
+                                                    if (subjectType == 'C' || subjectType == 'S'){
+                                                        duplicate = false;
+                                                    }
+                                                }
+                                            }
+                                        }
+
                                         newSubjects[x].setSubjectType(subjectType);
                                         cout << "Subject modified successfully!\n";
                                     }
@@ -430,10 +497,184 @@ int main() {
 
                         switch(studentsChoice){
                             case 1:
+                                cout << "*ADDING NEW STUDENTS*\n";
+                                cout << "===================\n";
+
+                                //==== PRINTS A TABLE SHOWING ALL THE STUDENTS IN THE RECORD ===//
+                                printStudentsTable();
+
+                                cout << "Enter Student ID: ";
+                                cin >> studentID;
+                                //==== WHILE INPUT IS NOT AN INTEGER ====//
+                                while (cin.fail()){
+                                    cout << "ERROR: ID can only consist of numbers!\n";
+                                    cin.clear();
+                                    cin.ignore(256,'\n');
+                                    cout << "Please enter a valid ID: ";
+                                    cin >> studentID;
+                                }
+
+
+                                //== CHECKS VECTOR TO SEE IF STUDENT ID EXISTS ALREADY ==//
+                                for (x = 0; x < newStudents.size(); x++){
+                                    if (studentID == newStudents[x].getStudentNo()){
+                                        cout << "Student ID already exists!\n";
+                                        cout << "Please enter a unique ID: ";
+                                        cin >> studentID;
+                                        //==== WHILE INPUT IS NOT AN INTEGER ====//
+                                        while (cin.fail()){
+                                            cout << "ERROR: ID can only consist of numbers!\n";
+                                            cin.clear();
+                                            cin.ignore(256,'\n');
+                                            cout << "Please enter a valid ID: ";
+                                            cin >> studentID;
+                                        }
+                                        break;
+                                    }
+                                }
+
+                                cout << "Enter Student Name: ";
+                                cin >> studentName;
+                                cout << "Enter Student Gender(M/F): ";
+                                cin >> studentGender;
+                                while (cin.fail()){
+                                    cout << "ERROR: Enter a single character\n";
+                                    cin.clear();
+                                    cin.ignore(256,'\n');
+                                    cout << "Enter again: ";
+                                    cin >> studentGender;
+                                }
+
+                                // CHECKS IF studentGender IS EITHER M or F
+                                duplicate = true;
+                                while(duplicate){
+                                    if (studentGender == 'M' || studentGender == 'F'){
+                                        duplicate = false;
+                                    }
+                                    else{
+                                        while (!(studentGender == 'M' || studentGender == 'F')){
+                                            cout << "Please enter either M or F: ";
+                                            cin.clear();
+                                            cin >> studentGender;
+                                            if (studentGender == 'M' || studentGender == 'F'){
+                                                duplicate = false;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //==== ADDS STUDENTS OBJECT TO VECTOR ====//
+                                newStudents.push_back(Student(studentID, studentName, studentGender));
+
+                                cout << "Student successfully added!" << endl;
+
+                                //==== PRINTS A TABLE SHOWING ALL THE STUDENTS IN THE RECORD ===//
+                                printStudentsTable();
+
                                 break;
                             case 2:
+                                cout << "*MODIFYING STUDENT RECORDS*\n";
+                                cout << "===================\n";
+
+                                //==== PRINTS A TABLE SHOWING ALL THE STUDENTS IN THE RECORD ===//
+                                printStudentsTable();
+
+                                cout << "Enter Student ID: ";
+                                cin >> studentID;
+                                //==== WHILE INPUT IS NOT AN INTEGER ====//
+                                while (cin.fail()){
+                                    cout << "ERROR: ID can only consist of numbers!\n";
+                                    cin.clear();
+                                    cin.ignore(256,'\n');
+                                    cout << "Please enter a valid ID: ";
+                                    cin >> studentID;
+                                }
+
+
+                                //== CHECKS VECTOR TO SEE IF STUDENT ID EXISTS ALREADY ==//
+                                for (x = 0; x < newStudents.size(); x++){
+                                    // IF STUDENT ID EXISTS
+                                    if (studentID == newStudents[x].getStudentNo()){
+                                        cout << "NEW Student ID: ";
+                                        cin >> studentID;
+                                        //==== WHILE INPUT IS NOT AN INTEGER ====//
+                                        while (cin.fail()) {
+                                            cout << "ERROR: ID can only consist of numbers!\n";
+                                            cin.clear();
+                                            cin.ignore(256, '\n');
+                                            cout << "Please enter a valid ID: ";
+                                            cin >> classID;
+                                        }
+                                        newStudents[x].setStudentNo(studentID);
+                                        cout << "NEW Student Name: ";
+                                        cin >> studentName;
+                                        newStudents[x].setFullName(studentName);
+                                        cout << "NEW Gender(M/F): ";
+                                        cin >> studentGender;
+                                        // IF INPUT FAILS
+                                        while (cin.fail()){
+                                            cout << "ERROR: Enter a single character\n";
+                                            cin.clear();
+                                            cin.ignore(256,'\n');
+                                            cout << "Enter again: ";
+                                            cin >> studentGender;
+                                        }
+                                        // CHECKS IF studentGender IS EITHER M or F
+                                        duplicate = true;
+                                        while(duplicate){
+                                            if (studentGender == 'M' || studentGender == 'F'){
+                                                duplicate = false;
+                                            }
+                                            else{
+                                                while (!(studentGender == 'M' || studentGender == 'F')){
+                                                    cout << "Please enter either M or F: ";
+                                                    cin.clear();
+                                                    cin >> studentGender;
+                                                    if (studentGender == 'M' || studentGender == 'F'){
+                                                        duplicate = false;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        newStudents[x].setGender(studentGender);
+                                        cout << "Student modified successfully!\n";
+                                    }
+                                }
+
+
+                                //==== PRINTS A TABLE SHOWING ALL THE STUDENTS IN THE RECORD ===//
+                                printStudentsTable();
                                 break;
                             case 3:
+                                cout << "*REMOVING STUDENT RECORDS*" << endl;
+
+                                //==== PRINTS A TABLE SHOWING ALL THE STUDENTS IN THE RECORD ===//
+                                printStudentsTable();
+
+                                cout << "Enter Student ID to remove: ";
+                                cin >> studentID;
+                                //==== WHILE INPUT IS NOT AN INTEGER ====//
+                                while (cin.fail()){
+                                    cout << "ERROR: ID can only consist of numbers!\n";
+                                    cin.clear();
+                                    cin.ignore(256,'\n');
+                                    cout << "Please enter a valid ID: ";
+                                    cin >> studentID;
+                                }
+
+                                //== CHECKS VECTOR TO SEE IF STUDENT ID EXISTS ALREADY ==//
+                                for (x = 0; x < newStudents.size(); x++) {
+                                    // IF STUDENT ID EXISTS
+                                    if (studentID == newStudents[x].getStudentNo()) {
+                                        // REMOVES STUDENT FROM VECTOR
+                                        newStudents.erase(newStudents.begin() + x);
+                                        cout << "Student successfully removed!\n";
+                                    }
+                                }
+
+                                //==== PRINTS A TABLE SHOWING ALL THE STUDENTS IN THE RECORD ===//
+                                printStudentsTable();
+
                                 break;
                             case 4:
                                 cout << "Exiting...\n";
