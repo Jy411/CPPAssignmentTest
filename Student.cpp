@@ -47,3 +47,11 @@ string Student::getTotalScore() {
 char Student::getFinalGrade() {
 
 }
+
+char ArtStudent::getFinalGrade() {
+    return Student::getFinalGrade();
+}
+
+char ScienceStudent::getFinalGrade() {
+    return Student::getFinalGrade();
+}

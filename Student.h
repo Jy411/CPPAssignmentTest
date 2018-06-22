@@ -24,9 +24,18 @@ public:
     char getGender() const;
     void setGender(char gender);
     string getTotalScore();
-    char getFinalGrade();
+    virtual char getFinalGrade();
 
 };
 
+class ArtStudent : public Student{
+public:
+    char getFinalGrade();
+};
+
+class ScienceStudent : public Student{
+public:
+    char getFinalGrade();
+};
 
 #endif //CPPASSIGNMENT_STUDENT_H
