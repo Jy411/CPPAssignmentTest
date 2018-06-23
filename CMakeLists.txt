@@ -3,4 +3,4 @@ project(CPPAssignment)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(CPPAssignment main.cpp Subject.cpp Subject.h SubjectScore.cpp SubjectScore.h Class.cpp Class.h Student.cpp Student.h)
+add_executable(CPPAssignment main.cpp Subject.cpp Subject.h SubjectScore.cpp SubjectScore.h Class.cpp Class.h Student.cpp Student.h FinalReport.cpp FinalReport.h)
