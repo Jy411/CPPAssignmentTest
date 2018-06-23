@@ -810,6 +810,7 @@ int main() {
                                         for (x = 0; x < newStudents.size(); x++){
                                             if (studentID == newStudents[x].getStudentNo()){
                                                 cout << "Student selected!\n";
+                                                cout << "!!!!!!!!!!!!!!!!!\n";
                                                 // creates a FinalReport object which stores student, class the student take,
                                                 // subject the student take, and subject score
                                                 FinalReport studentReport[x];
@@ -817,15 +818,18 @@ int main() {
                                                 studentReport[x].setStudentNo(newStudents[x].getStudentNo());
                                                 studentReport[x].setFullName(newStudents[x].getFullName());
                                                 studentReport[x].setGender(newStudents[x].getGender());
+                                                cout << "QWEQWEQWEQWEQEWQW\n";
                                                 cout << endl;
                                                 printClassesTable();
                                                 cout << "Enter Class ID to add student to: ";
                                                 cin >> classID;
-                                                for (x = 0; x < newClasses.size(); x++){
-                                                    if (classID == newClasses[x].getClassID()){
+                                                for (int i = 0; i < newClasses.size(); i++){
+                                                    if (classID == newClasses[i].getClassID()){
                                                         cout << "Class selected!\n";
-                                                        classID = newClasses[x].getClassID();
-                                                        className = newClasses[x].getClassName();
+                                                        classID = newClasses[i].getClassID();
+                                                        className = newClasses[i].getClassName();
+                                                        cout << "CLASS ID: " << classID << endl;
+                                                        cout << "CLASS NAME: " << className << endl;
                                                     }
                                                 }
                                                 // setting class info
@@ -834,6 +838,7 @@ int main() {
 
                                                 // add the report to the vector
                                                 finalRecords.push_back(studentReport[x]);
+
 
                                                 cout << "Student added to class!\n";
                                                 for (x = 0; x < finalRecords.size() ; x++){
@@ -847,8 +852,17 @@ int main() {
                                                 }
                                             }
                                         }
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        break;
+                                    case 5:
+                                        break;
+                                    default:
+                                        break;
                                 }
-
                             }
                             else{
                                 cout << "Student NOT found!\n";
