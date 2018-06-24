@@ -1,6 +1,9 @@
+#pragma once
 //
 // Created by Jinyung Tan on 23/06/2018.
-//
+// Edited by Abduzarif Madraimov on 23/06/2018.
+// Approved by Raynald Vun on 23/06/2018
+// Compiled by Nazmi Munya on 23/06/2018
 
 #ifndef CPPASSIGNMENT_FINALREPORT_H
 #define CPPASSIGNMENT_FINALREPORT_H
@@ -18,7 +21,8 @@ class FinalReport {
 private:
     // STUDENT
     int studentNo;
-    string fullName;
+    string firstName;
+    string lastName;
     char gender;
     // CLASS STUDENT IS IN
     int classID;
@@ -34,16 +38,20 @@ private:
 public:
     FinalReport();
 
-    FinalReport(int studentNo, const string &fullName, char gender, int classID, const string &className, int yearForm,
+    FinalReport(int studentNo, const string &firstName, const string &lastName, char gender, int classID, const string &className, int yearForm,
                 char yearGrade, int subjectID, const string &subjectName, char subjectType, double score);
 
     int getStudentNo() const;
 
     void setStudentNo(int studentNo);
 
-    const string &getFullName() const;
+    const string &getFirstName() const;
 
-    void setFullName(const string &fullName);
+    void setFirstName(const string &firstName);
+
+    const string &getLastName() const;
+
+    void setLastName(const string &lastName);
 
     char getGender() const;
 

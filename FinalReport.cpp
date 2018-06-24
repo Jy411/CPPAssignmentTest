@@ -1,14 +1,15 @@
 //
 // Created by Jinyung Tan on 23/06/2018.
-//
-
+// Edited by Abduzarif Madraimov on 23/06/2018.
+// Approved by Raynald Vun on 23/06/2018
+// Compiled by Nazmi Munya on 23/06/2018
 #include "FinalReport.h"
 
 FinalReport::FinalReport() {}
 
-FinalReport::FinalReport(int studentNo, const string &fullName, char gender, int classID, const string &className,
+FinalReport::FinalReport(int studentNo, const string &firstName, const string &lastName, char gender, int classID, const string &className,
                          int yearForm, char yearGrade, int subjectID, const string &subjectName, char subjectType,
-                         double score) : studentNo(studentNo), fullName(fullName), gender(gender), classID(classID),
+                         double score) : studentNo(studentNo), firstName(firstName), lastName(lastName), gender(gender), classID(classID),
                                          className(className), yearForm(yearForm), yearGrade(yearGrade),
                                          subjectID(subjectID), subjectName(subjectName), subjectType(subjectType),
                                          score(score) {}
@@ -21,14 +22,20 @@ void FinalReport::setStudentNo(int studentNo) {
     FinalReport::studentNo = studentNo;
 }
 
-const string &FinalReport::getFullName() const {
-    return fullName;
+const string &FinalReport::getFirstName() const {
+    return firstName;
 }
 
-void FinalReport::setFullName(const string &fullName) {
-    FinalReport::fullName = fullName;
+void FinalReport::setFirstName(const string &firstName) {
+    FinalReport::firstName = firstName;
+}
+const string &FinalReport::getLastName() const {
+    return lastName;
 }
 
+void FinalReport::setLastName(const string &lastName) {
+    FinalReport::lastName = lastName;
+}
 char FinalReport::getGender() const {
     return gender;
 }
