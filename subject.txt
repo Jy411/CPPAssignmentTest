@@ -1,0 +1,5 @@
+1 Math C
+2 BahasaMalayu S
+3 Chemistry S
+4 English S
+6 PhysicalEducation C

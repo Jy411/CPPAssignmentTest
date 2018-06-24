@@ -964,16 +964,25 @@ int main() {
 
                                             // user inputs a class ID
                                             for (int a = 0; a < newClasses.size(); a++){
-                                                // if class ID found
+                                                // if class ID is found
                                                 if (classID == newClasses[a].getClassID()){
                                                     cout << "Class found!\n";
                                                     // creates a finalreport object to store student and class info
                                                     // and stores in vector
-                                                    cout << "STUDENT ADDED TO CLASS!\n";
-                                                    newReports.push_back(FinalReport(studentID, classID));
+                                                    newReports.push_back(FinalReport());
+                                                    for (int b = 0; b < newReports.size(); b++){
+                                                        if (!(classID == newReports[x].getClassID() && studentID == newReports[x].getStudentNo())){
+                                                            newReports.pop_back();
+                                                            cout << "STUDENT ADDED TO CLASS!\n";
+                                                            newReports.push_back(FinalReport(studentID, classID));
+                                                            break;
+                                                        }
+                                                        else{
+                                                            cout << "Student is already in class!\n";
+                                                        }
+                                                    }
                                                     printReportsTable();
                                                 }
-
                                             }
 
 
