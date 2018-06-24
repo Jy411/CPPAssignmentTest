@@ -919,23 +919,23 @@ int main() {
                                 "Enter student Last name: ";
                         cin >> studentlName;
 
-
                         for (x = 0; x < newStudents.size(); x++) {
-                            if (x!=newStudents.size()&&found!=true) {
-                                if (studentlName == newStudents[x].getLastName()) {
-                                    cout << "||||||STUDENT FOUND||||||\n";
-                                    cout << "1. Register Student to class\n"
-                                            "2. Enter subject score\n"
-                                            "3. Modify subject score\n"
-                                            "4. Display student details\n"
-                                            "5. Exit\n";
-                                    found = true;
-                                }
-                                else if(x == newStudents.size()-1 && found != true) {
-                                    cout << "No record found" << endl;
-                                }
+                            if (studentlName == newStudents[x].getLastName()) {
+                                cout << "||||||STUDENT FOUND||||||\n";
+                                cout << "1. Register Student to class\n"
+                                        "2. Enter subject score\n"
+                                        "3. Modify subject score\n"
+                                        "4. Display student details\n"
+                                        "5. Exit\n";
+
+                                break;
+                            }
+                            else {
+                                // IF STUDENT IS NOT FOUND
                             }
                         }
+
+
 
                         break;
                     case '2':
@@ -948,7 +948,7 @@ int main() {
                         cin >> studentID;
 
                         for (x = 0; x < newStudents.size(); x++) {
-                            if (x != newStudents.size() && found != true) {
+                            if (x != newStudents.size()) {
                                 if (studentID == newStudents[x].getStudentNo()) {
                                     cout << "||||||STUDENT FOUND||||||\n";
                                     cout << "1. Register Student to class\n"
@@ -956,10 +956,42 @@ int main() {
                                             "3. Modify subject score\n"
                                             "4. Display student details\n"
                                             "5. Exit\n";
-                                    found = true;
                                     cin >> functionChoice;
                                     switch(functionChoice) {
                                         case '1':
+                                            printClassesTable();
+                                            cout << "Enter Class ID\n";
+                                            cin >> classID;
+
+                                            // user inputs a class ID
+                                            for (int a = 0; a < newClasses.size(); a++){
+                                                // if class ID found
+                                                if (classID == newClasses[a].getClassID()){
+                                                    cout << "Class found!\n";
+                                                    // creates a finalreport object to store student and class info
+                                                    // and stores in vector
+                                                    newReports.push_back(FinalReport());
+                                                    // loops through finalreport vector to find if a student exist
+                                                    for (int b = 0; b < newReports.size(); b++){
+                                                        // if student is not in a class
+                                                        if (studentID != newReports[b].getStudentNo()){
+                                                            cout << "STUDENT ADDED TO CLASS!\n";
+                                                            newReports[b].setStudentNo(studentID);
+                                                            newReports[b].setClassID(classID);
+                                                            cout << "Student ID:" << newReports[b].getStudentNo() << endl;
+                                                            cout << "Class ID: " << newReports[b].getClassID() << endl;
+
+                                                            for (int y = 0; y < newReports.size(); y++){
+                                                                cout << "===============================\n";
+                                                                cout << "Student ID: " << newReports[y].getStudentNo()
+                                                                     << " || Class ID: " << newReports[y].getClassID() << endl;
+                                                                cout << "===============================\n";
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
 
                                             break;
                                         case '2':
