@@ -993,7 +993,7 @@ int main() {
                                             cout << "Enter Subject ID\n";
                                             cin >> subjectID;
                                             for (int k = 0; k < newReports.size(); k++) {
-                                                if (studentID=newReports[k].getStudentNo()) {
+                                                if (studentID == newReports[k].getStudentNo()) {
                                                     if (subjectID == newReports[k].getSubjectID())
                                                     {
                                                         cout << "Enter score\n";
@@ -1010,7 +1010,7 @@ int main() {
                                             cout << "============================================================================================ \n";
                                             for (int k = 0; k < newReports.size(); k++) {
 
-                                                if (studentID = newReports[k].getStudentNo()) {
+                                                if (studentID == newReports[k].getStudentNo()) {
 
                                                     cout << "Student ID: " << newReports[k].getStudentNo()
                                                          << " ||Student Name: " << newReports[k].getFirstName()
