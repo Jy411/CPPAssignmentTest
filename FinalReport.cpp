@@ -7,6 +7,8 @@
 
 FinalReport::FinalReport() {}
 
+FinalReport::FinalReport(int studentNo, int classID) : studentNo(studentNo), classID(classID) {}
+
 FinalReport::FinalReport(int studentNo, const string &firstName, const string &lastName, char gender, int classID, const string &className,
                          int yearForm, char yearGrade, int subjectID, const string &subjectName, char subjectType,
                          double score) : studentNo(studentNo), firstName(firstName), lastName(lastName), gender(gender), classID(classID),
@@ -107,4 +109,5 @@ double FinalReport::getScore() const {
 void FinalReport::setScore(double score) {
     FinalReport::score = score;
 }
+
 

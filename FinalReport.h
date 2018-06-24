@@ -38,6 +38,8 @@ private:
 public:
     FinalReport();
 
+    FinalReport(int studentNo, int classID);
+
     FinalReport(int studentNo, const string &firstName, const string &lastName, char gender, int classID, const string &className, int yearForm,
                 char yearGrade, int subjectID, const string &subjectName, char subjectType, double score);
 

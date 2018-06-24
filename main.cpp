@@ -49,13 +49,12 @@ void printStudentsTable() {
     cout << "============================================================\n\n";
 }
 void printReportsTable() {
-    cout << "\n";
-    cout << "============================================================\n";
-    for (auto &newReports : newReports) {
-        cout << "Student ID: " << newReports.getStudentNo() << " | Class ID: " << newReports.getClassID() << " | Subject ID: " << newReports.getSubjectID() << " | Subject Name: " << newReports.getSubjectName() << " | Score: " << newReports.getScore() << endl;
+    for (int y = 0; y < newReports.size(); y++){
+        cout << "===============================\n";
+        cout << "Student ID: " << newReports[y].getStudentNo()
+             << " || Class ID: " << newReports[y].getClassID() << endl;
+        cout << "===============================\n";
     }
-    cout << "============================================================\n\n";
-
 }
 void loadSubject() {
     ifstream subject;
@@ -970,28 +969,13 @@ int main() {
                                                     cout << "Class found!\n";
                                                     // creates a finalreport object to store student and class info
                                                     // and stores in vector
-                                                    newReports.push_back(FinalReport());
-                                                    // loops through finalreport vector to find if a student exist
-                                                    for (int b = 0; b < newReports.size(); b++){
-                                                        // if student is not in a class
-                                                        if (studentID != newReports[b].getStudentNo()){
-                                                            cout << "STUDENT ADDED TO CLASS!\n";
-                                                            newReports[b].setStudentNo(studentID);
-                                                            newReports[b].setClassID(classID);
-                                                            cout << "Student ID:" << newReports[b].getStudentNo() << endl;
-                                                            cout << "Class ID: " << newReports[b].getClassID() << endl;
-
-                                                            for (int y = 0; y < newReports.size(); y++){
-                                                                cout << "===============================\n";
-                                                                cout << "Student ID: " << newReports[y].getStudentNo()
-                                                                     << " || Class ID: " << newReports[y].getClassID() << endl;
-                                                                cout << "===============================\n";
-
-                                                            }
-                                                        }
-                                                    }
+                                                    cout << "STUDENT ADDED TO CLASS!\n";
+                                                    newReports.push_back(FinalReport(studentID, classID));
+                                                    printReportsTable();
                                                 }
+
                                             }
+
 
                                             break;
                                         case '2':
