@@ -9,12 +9,12 @@ FinalReport::FinalReport() {}
 
 FinalReport::FinalReport(int studentNo, int classID) : studentNo(studentNo), classID(classID) {}
 
-FinalReport::FinalReport(int studentNo, const string &firstName, const string &lastName, char gender, int classID, const string &className,
-                         int yearForm, char yearGrade, int subjectID, const string &subjectName, char subjectType,
-                         double score) : studentNo(studentNo), firstName(firstName), lastName(lastName), gender(gender), classID(classID),
-                                         className(className), yearForm(yearForm), yearGrade(yearGrade),
-                                         subjectID(subjectID), subjectName(subjectName), subjectType(subjectType),
-                                         score(score) {}
+//FinalReport::FinalReport(int studentNo, const string &firstName, const string &lastName, char gender, int classID, const string &className,
+//                         int yearForm, char yearGrade, int subjectID, const string &subjectName, char subjectType,
+//                         double score) : studentNo(studentNo), firstName(firstName), lastName(lastName), gender(gender), classID(classID),
+//                                         className(className), yearForm(yearForm), yearGrade(yearGrade),
+//                                         subjectID(subjectID), subjectName(subjectName), subjectType(subjectType),
+//                                         score(score) {}
 
 int FinalReport::getStudentNo() const {
     return studentNo;
@@ -78,36 +78,36 @@ void FinalReport::setYearGrade(char yearGrade) {
     FinalReport::yearGrade = yearGrade;
 }
 
-int FinalReport::getSubjectID() const {
-    return subjectID;
-}
-
-void FinalReport::setSubjectID(int subjectID) {
-    FinalReport::subjectID = subjectID;
-}
-
-const string &FinalReport::getSubjectName() const {
-    return subjectName;
-}
-
-void FinalReport::setSubjectName(const string &subjectName) {
-    FinalReport::subjectName = subjectName;
-}
-
-char FinalReport::getSubjectType() const {
-    return subjectType;
-}
-
-void FinalReport::setSubjectType(char subjectType) {
-    FinalReport::subjectType = subjectType;
-}
-
-double FinalReport::getScore() const {
-    return score;
-}
-
-void FinalReport::setScore(double score) {
-    FinalReport::score = score;
-}
+//int FinalReport::getSubjectID() const {
+//    return subjectID;
+//}
+//
+//void FinalReport::setSubjectID(int subjectID) {
+//    FinalReport::subjectID = subjectID;
+//}
+//
+//const string &FinalReport::getSubjectName() const {
+//    return subjectName;
+//}
+//
+//void FinalReport::setSubjectName(const string &subjectName) {
+//    FinalReport::subjectName = subjectName;
+//}
+//
+//char FinalReport::getSubjectType() const {
+//    return subjectType;
+//}
+//
+//void FinalReport::setSubjectType(char subjectType) {
+//    FinalReport::subjectType = subjectType;
+//}
+//
+//double FinalReport::getScore() const {
+//    return score;
+//}
+//
+//void FinalReport::setScore(double score) {
+//    FinalReport::score = score;
+//}
 
 

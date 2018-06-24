@@ -13,12 +13,18 @@ using namespace std;
 vector <Subject> newSubjects;
 vector <int> ::iterator i;
 vector <int> ::reverse_iterator ir;
+vector <Subject> lowerSecSubjects;
+vector <Subject> upperSecArtSubjects;
+vector <Subject> upperSecSciSubjects;
 
 // VECTOR FOR STORING CLASSES
 vector <Class> newClasses;
 
 // VECTOR FOR STORING STUDENTS
 vector <Student> newStudents;
+
+// VECTOR FOR STORING SUBJECT/SCORE
+vector <SubjectScore> studentSubScores;
 
 // VECTOR FOR STORING EVERYTHING!
 vector <FinalReport> newReports;
@@ -32,6 +38,32 @@ void printSubjectsTable() {
     }
     cout << "============================================================\n\n";
 }
+void printLowSecSubjectsTable() {
+    cout << "============================================================\n";
+    for (auto &lowerSecSubject : lowerSecSubjects) {
+        cout << "Subject ID: " << lowerSecSubject.getSubjectID() << " | Subject Name: " << lowerSecSubject.getSubjectName()
+             << " | Subject Type: " << lowerSecSubject.getSubjectType() << endl;
+    }
+    cout << "============================================================\n\n";
+}
+
+void printUpperSecArtSubjectsTable() {
+    cout << "============================================================\n";
+    for (auto &upperSecArtSubject : upperSecArtSubjects) {
+        cout << "Subject ID: " << upperSecArtSubject.getSubjectID() << " | Subject Name: " << upperSecArtSubject.getSubjectName()
+             << " | Subject Type: " << upperSecArtSubject.getSubjectType() << endl;
+    }
+    cout << "============================================================\n\n";
+}
+void printUpperSecSciSubjectsTable() {
+    cout << "============================================================\n";
+    for (auto &upperSecSciSubject : upperSecSciSubjects) {
+        cout << "Subject ID: " << upperSecSciSubject.getSubjectID() << " | Subject Name: " << upperSecSciSubject.getSubjectName()
+             << " | Subject Type: " << upperSecSciSubject.getSubjectType() << endl;
+    }
+    cout << "============================================================\n\n";
+}
+
 void printClassesTable() {
     cout << "============================================================\n";
     for (int x = 0; x < newClasses.size(); x++) {
@@ -56,138 +88,138 @@ void printReportsTable() {
         cout << "===============================\n";
     }
 }
-void loadSubject() {
-    ifstream subject;
-    subject.open("subject.txt");
-    string line;
-
-    while (getline(subject, line)) // To get you all the lines.
-    {
-        istringstream ss(line);
-        int id;
-        string name;
-        char type;
-        ss >> id >> name >> type;
-        newSubjects.push_back(Subject(id, name, type));
-        cout << id << " " << name << " " << type << "\n";
-    }
-
-    subject.close();
-}
-void writeSubject() {
-    ofstream subject;
-    subject.open("subject.txt");
-
-    for (int x = 0; x< newSubjects.size(); x++) {
-        subject << newSubjects[x].getSubjectID() << " " << newSubjects[x].getSubjectName() << " " << newSubjects[x].getSubjectType() << "\n";
-        cout << newSubjects[x].getSubjectID() << " " << newSubjects[x].getSubjectName() << " " << newSubjects[x].getSubjectType() << "\n";
-    }
-    cout << "\n";
-    subject.close();
-}
-void loadStudent() {
-    ifstream student;
-    student.open("student.txt");
-    string line;
-
-    while (getline(student, line)) // To get you all the lines.
-    {
-        istringstream ss(line);
-        int id;
-        string fname;
-        string lname;
-        char gender;
-        ss >> id >> fname >> lname >> gender;
-        newStudents.push_back(Student(id, fname, lname, gender));
-        cout << id << " " << fname << " " << lname << " " << gender << "\n";
-    }
-
-    student.close();
-}
-void writeStudent() {
-    ofstream student;
-    student.open("student.txt");
-
-    for (int x = 0; x< newStudents.size(); x++) {
-        student << newStudents[x].getStudentNo() << " " << newStudents[x].getFirstName() << " " << newStudents[x].getLastName() << " " << newStudents[x].getGender() << "\n";
-        cout << newStudents[x].getStudentNo() << " " << newStudents[x].getFirstName() << " " << newStudents[x].getLastName() << " " << newStudents[x].getGender() << "\n";
-    }
-    cout << "\n";
-    student.close();
-}
-void loadClass() {
-    ifstream classs;
-    classs.open("class.txt");
-    string line;
-
-    while (getline(classs, line)) // To get you all the lines.
-    {
-        istringstream ss(line);
-        int id;
-        string name;
-        int year;
-        char grade;
-        ss >> id >> name >> year >> grade;
-        newClasses.push_back(Class(id, name, year, grade));
-        cout << id << " " << name << " " << year << " " << grade << "\n";
-    }
-
-    classs.close();
-}
-void writeClass() {
-    ofstream classs;
-    classs.open("class.txt");
-
-    for (int x = 0; x< newClasses.size(); x++) {
-        classs << newClasses[x].getClassID() << " " << newClasses[x].getClassName() << " " << newClasses[x].getYearForm() << " " << newClasses[x].getYearGrade() << "\n";
-        cout << newClasses[x].getClassID() << " " << newClasses[x].getClassName() << " " << newClasses[x].getYearForm() << " " << newClasses[x].getYearGrade() << "\n";
-    }
-    cout << "\n";
-    classs.close();
-}
-void loadReport() {
-    ifstream report;
-    report.open("report.txt");
-    string line;
-
-    while (getline(report, line)) // To get you all the lines.
-    {
-        istringstream ss(line);
-        int sid;
-        string sfname;
-        string slname;
-        char gender;
-        int cid;
-        string cname;
-        int cform;
-        char cgrade;
-        int subid;
-        string subname;
-        char subType;
-        double scr;
-        char ntg;
-        ss >> sid >> sfname >> slname >> gender >> cid>>cname >>cform>>cgrade >> subid >> subname >> subType>> scr ;
-        newReports.push_back(FinalReport(sid, sfname, slname, gender, cid, cname, cform, cgrade, subid, subname, subType, scr));
-        cout << sfname << " " << slname << " " << gender << " " << cid << " " << cname << " " << cform << " " << cgrade << " " << subid << " " << subname << " " << subType << " " << scr<<endl ;
-    }
-    cout << endl;
-    report.close();
-}
-void writeReport() {
-    ofstream report;
-    report.open("report.txt");
-
-    for (int x = 0; x< newReports.size(); x++) {
-        report << newReports[x].getStudentNo() << " " << newReports[x].getFirstName() << " " << newReports[x].getLastName() << " " << newReports[x].getGender() << " "
-               << newReports[x].getClassID() << " " << newReports[x].getClassName() << " " << newReports[x].getYearForm()<< " " << newReports[x].getYearGrade()
-               << " " << newReports[x].getSubjectID() << " " << newReports[x].getSubjectName() << " " << newReports[x].getSubjectType() << " " << newReports[x].getScore() << "\n";
-        cout << newReports[x].getStudentNo() << " " << newReports[x].getFirstName() << " " << newReports[x].getLastName() << " " << newReports[x].getGender() << " "
-             << newReports[x].getClassID() << " " << newReports[x].getClassName() << " " << newReports[x].getYearForm() << " " << newReports[x].getYearGrade()
-             << " " << newReports[x].getSubjectID() << " " << newReports[x].getSubjectName() << " " << newReports[x].getSubjectType() << " " << newReports[x].getScore() << "\n";
-    }
-    cout << "\n";
-    report.close();
-}
+//void loadSubject() {
+//    ifstream subject;
+//    subject.open("subject.txt");
+//    string line;
+//
+//    while (getline(subject, line)) // To get you all the lines.
+//    {
+//        istringstream ss(line);
+//        int id;
+//        string name;
+//        char type;
+//        ss >> id >> name >> type;
+//        newSubjects.push_back(Subject(id, name, type));
+//        cout << id << " " << name << " " << type << "\n";
+//    }
+//
+//    subject.close();
+//}
+//void writeSubject() {
+//    ofstream subject;
+//    subject.open("subject.txt");
+//
+//    for (int x = 0; x< newSubjects.size(); x++) {
+//        subject << newSubjects[x].getSubjectID() << " " << newSubjects[x].getSubjectName() << " " << newSubjects[x].getSubjectType() << "\n";
+//        cout << newSubjects[x].getSubjectID() << " " << newSubjects[x].getSubjectName() << " " << newSubjects[x].getSubjectType() << "\n";
+//    }
+//    cout << "\n";
+//    subject.close();
+//}
+//void loadStudent() {
+//    ifstream student;
+//    student.open("student.txt");
+//    string line;
+//
+//    while (getline(student, line)) // To get you all the lines.
+//    {
+//        istringstream ss(line);
+//        int id;
+//        string fname;
+//        string lname;
+//        char gender;
+//        ss >> id >> fname >> lname >> gender;
+//        newStudents.push_back(Student(id, fname, lname, gender));
+//        cout << id << " " << fname << " " << lname << " " << gender << "\n";
+//    }
+//
+//    student.close();
+//}
+//void writeStudent() {
+//    ofstream student;
+//    student.open("student.txt");
+//
+//    for (int x = 0; x< newStudents.size(); x++) {
+//        student << newStudents[x].getStudentNo() << " " << newStudents[x].getFirstName() << " " << newStudents[x].getLastName() << " " << newStudents[x].getGender() << "\n";
+//        cout << newStudents[x].getStudentNo() << " " << newStudents[x].getFirstName() << " " << newStudents[x].getLastName() << " " << newStudents[x].getGender() << "\n";
+//    }
+//    cout << "\n";
+//    student.close();
+//}
+//void loadClass() {
+//    ifstream classs;
+//    classs.open("class.txt");
+//    string line;
+//
+//    while (getline(classs, line)) // To get you all the lines.
+//    {
+//        istringstream ss(line);
+//        int id;
+//        string name;
+//        int year;
+//        char grade;
+//        ss >> id >> name >> year >> grade;
+//        newClasses.push_back(Class(id, name, year, grade));
+//        cout << id << " " << name << " " << year << " " << grade << "\n";
+//    }
+//
+//    classs.close();
+//}
+//void writeClass() {
+//    ofstream classs;
+//    classs.open("class.txt");
+//
+//    for (int x = 0; x< newClasses.size(); x++) {
+//        classs << newClasses[x].getClassID() << " " << newClasses[x].getClassName() << " " << newClasses[x].getYearForm() << " " << newClasses[x].getYearGrade() << "\n";
+//        cout << newClasses[x].getClassID() << " " << newClasses[x].getClassName() << " " << newClasses[x].getYearForm() << " " << newClasses[x].getYearGrade() << "\n";
+//    }
+//    cout << "\n";
+//    classs.close();
+//}
+//void loadReport() {
+//    ifstream report;
+//    report.open("report.txt");
+//    string line;
+//
+//    while (getline(report, line)) // To get you all the lines.
+//    {
+//        istringstream ss(line);
+//        int sid;
+//        string sfname;
+//        string slname;
+//        char gender;
+//        int cid;
+//        string cname;
+//        int cform;
+//        char cgrade;
+//        int subid;
+//        string subname;
+//        char subType;
+//        double scr;
+//        char ntg;
+//        ss >> sid >> sfname >> slname >> gender >> cid>>cname >>cform>>cgrade >> subid >> subname >> subType>> scr ;
+//        newReports.push_back(FinalReport(sid, sfname, slname, gender, cid, cname, cform, cgrade, subid, subname, subType, scr));
+//        cout << sfname << " " << slname << " " << gender << " " << cid << " " << cname << " " << cform << " " << cgrade << " " << subid << " " << subname << " " << subType << " " << scr<<endl ;
+//    }
+//    cout << endl;
+//    report.close();
+//}
+//void writeReport() {
+//    ofstream report;
+//    report.open("report.txt");
+//
+//    for (int x = 0; x< newReports.size(); x++) {
+//        report << newReports[x].getStudentNo() << " " << newReports[x].getFirstName() << " " << newReports[x].getLastName() << " " << newReports[x].getGender() << " "
+//               << newReports[x].getClassID() << " " << newReports[x].getClassName() << " " << newReports[x].getYearForm()<< " " << newReports[x].getYearGrade()
+//               << " " << newReports[x].getSubjectID() << " " << newReports[x].getSubjectName() << " " << newReports[x].getSubjectType() << " " << newReports[x].getScore() << "\n";
+//        cout << newReports[x].getStudentNo() << " " << newReports[x].getFirstName() << " " << newReports[x].getLastName() << " " << newReports[x].getGender() << " "
+//             << newReports[x].getClassID() << " " << newReports[x].getClassName() << " " << newReports[x].getYearForm() << " " << newReports[x].getYearGrade()
+//             << " " << newReports[x].getSubjectID() << " " << newReports[x].getSubjectName() << " " << newReports[x].getSubjectType() << " " << newReports[x].getScore() << "\n";
+//    }
+//    cout << "\n";
+//    report.close();
+//}
 
 int main() {
     // FOR MENUS
@@ -216,10 +248,10 @@ int main() {
     bool found = false;
 
     int x;
-    loadSubject();
-    loadStudent();
-    loadClass();
-    loadReport();
+//    loadSubject();
+//    loadStudent();
+//    loadClass();
+//    loadReport();
     while (menu)
     {
 
@@ -356,6 +388,22 @@ int main() {
 
                                 //==== ADDS SUBJECT OBJECT TO VECTOR ====//
                                 newSubjects.push_back(Subject(subjectID, subjectName, subjectType));
+
+                                if (subjectType == 'C'){
+                                    lowerSecSubjects.push_back(Subject(subjectID, subjectName, subjectType));
+                                }
+                                else if (subjectType == 'S'){
+                                    cout << "1. Art Stream Subject\n"
+                                            "2. Science Stream Subject\n"
+                                            "> ";
+                                    cin >> adminChoice;
+                                    if (adminChoice == '1'){
+                                        upperSecArtSubjects.push_back(Subject(subjectID, subjectName, subjectType));
+                                    }
+                                    else if (adminChoice == '2'){
+                                        upperSecSciSubjects.push_back(Subject(subjectID, subjectName, subjectType));
+                                    }
+                                }
 
                                 cout << "Subject successfully added!" << endl;
 
@@ -973,8 +1021,11 @@ int main() {
                                                     for (int b = 0; b < newReports.size(); b++){
                                                         if (!(classID == newReports[x].getClassID() && studentID == newReports[x].getStudentNo())){
                                                             newReports.pop_back();
-                                                            cout << "STUDENT ADDED TO CLASS!\n";
-                                                            newReports.push_back(FinalReport(studentID, classID));
+                                                            // IF CLASS IS A LOWER SECONDARY CLASS
+                                                            if (newClasses[a].getYearGrade() == '1'){
+                                                                cout << "STUDENT ADDED TO CLASS!\n";
+                                                                newReports.push_back(FinalReport(studentID, classID));
+                                                            }
                                                             break;
                                                         }
                                                         else{
@@ -990,61 +1041,87 @@ int main() {
                                         case '2':
                                             cout << "Enter Class ID\n";
                                             cin >> classID;
-                                            cout << "Enter Subject ID\n";
-                                            cin >> subjectID;
-                                            cout << "Enter score\n";
-                                            cin >> score;
 
-                                            for (int k = 0; k < newClasses.size(); k++)
-                                            {
-                                                if (classID == newClasses[k].getClassID())
-                                                {
-                                                    for (int s = 0; s < newSubjects.size(); s++)
-                                                    {
-                                                        if (subjectID == newSubjects[s].getSubjectID())
-                                                        {
-                                                            newReports.push_back(FinalReport(newStudents[x].getStudentNo(), newStudents[x].getFirstName(), newStudents[x].getLastName(),
-                                                                                             newStudents[x].getGender(), newClasses[k].getClassID(), newClasses[k].getClassName(), newClasses[k].getYearForm(), newClasses[k].getYearGrade(),
-                                                                                             newSubjects[s].getSubjectID(), newSubjects[s].getSubjectName(), newSubjects[s].getSubjectType(), score));
-                                                            printReportsTable();
+                                            for (int q = 0; q < newClasses.size(); q++){
+                                                if (classID == newClasses[q].getClassID()){
+                                                    if (newClasses[q].getYearGrade() == '1'){
+                                                        cout << "This is a Lower Secondary Class\n";
+                                                        printLowSecSubjectsTable();
+                                                        cout << "Enter a subject ID: ";
+                                                        cin >> subjectID;
+                                                        for (int i = 0; i < lowerSecSubjects.size(); i++){
+                                                            if (subjectID == lowerSecSubjects[x].getSubjectID()){
+                                                                    cout << "Subject found!\n";
+                                                                    cout << "Enter score: ";
+                                                                    cin >> score;
+                                                                    studentSubScores.push_back(SubjectScore(lowerSecSubjects[x], score));
+                                                                    cout << "FOR STUDENT: " << studentID << endl;
+                                                                    for (int c = 0; c < studentSubScores.size(); c++){
+                                                                        cout << "Subject: " << studentSubScores[c].getSubject().getSubjectName()
+                                                                             << " || Score: " << studentSubScores[c].getScore();
+                                                                    }
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
 
+
+//                                            cout << "Enter Subject ID\n";
+//                                            cin >> subjectID;
+//                                            cout << "Enter score\n";
+//                                            cin >> score;
+//
+//                                            for (int k = 0; k < newClasses.size(); k++)
+//                                            {
+//                                                if (classID == newClasses[k].getClassID())
+//                                                {
+//                                                    for (int s = 0; s < newSubjects.size(); s++)
+//                                                    {
+//                                                        if (subjectID == newSubjects[s].getSubjectID())
+//                                                        {
+//                                                            newReports.push_back(FinalReport(newStudents[x].getStudentNo(), newStudents[x].getFirstName(), newStudents[x].getLastName(),
+//                                                                                             newStudents[x].getGender(), newClasses[k].getClassID(), newClasses[k].getClassName(), newClasses[k].getYearForm(), newClasses[k].getYearGrade(),
+//                                                                                             newSubjects[s].getSubjectID(), newSubjects[s].getSubjectName(), newSubjects[s].getSubjectType(), score));
+//                                                            printReportsTable();
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+
                                             break;
                                         case '3':
-                                            printReportsTable();
-                                            cout << "Enter Subject ID\n";
-                                            cin >> subjectID;
-                                            for (int k = 0; k < newReports.size(); k++) {
-                                                if (studentID == newReports[k].getStudentNo()) {
-                                                    if (subjectID == newReports[k].getSubjectID())
-                                                    {
-                                                        cout << "Enter score\n";
-                                                        cin >> score;
-                                                        newReports.push_back(FinalReport(newStudents[k].getStudentNo(), newStudents[k].getFirstName(), newStudents[k].getLastName(),
-                                                                                         newStudents[k].getGender(), newClasses[k].getClassID(), newClasses[k].getClassName(), newClasses[k].getYearForm(), newClasses[k].getYearGrade(),
-                                                                                         newSubjects[k].getSubjectID(), newSubjects[k].getSubjectName(), newSubjects[k].getSubjectType(), score));
-                                                    }
-                                                }
-                                            }
-                                            printReportsTable();
+//                                            printReportsTable();
+//                                            cout << "Enter Subject ID\n";
+//                                            cin >> subjectID;
+//                                            for (int k = 0; k < newReports.size(); k++) {
+//                                                if (studentID == newReports[k].getStudentNo()) {
+//                                                    if (subjectID == newReports[k].getSubjectID())
+//                                                    {
+//                                                        cout << "Enter score\n";
+//                                                        cin >> score;
+//                                                        newReports.push_back(FinalReport(newStudents[k].getStudentNo(), newStudents[k].getFirstName(), newStudents[k].getLastName(),
+//                                                                                         newStudents[k].getGender(), newClasses[k].getClassID(), newClasses[k].getClassName(), newClasses[k].getYearForm(), newClasses[k].getYearGrade(),
+//                                                                                         newSubjects[k].getSubjectID(), newSubjects[k].getSubjectName(), newSubjects[k].getSubjectType(), score));
+//                                                    }
+//                                                }
+//                                            }
+//                                            printReportsTable();
                                             break;
                                         case '4':
-                                            cout << "============================================================================================ \n";
-                                            for (int k = 0; k < newReports.size(); k++) {
-
-                                                if (studentID == newReports[k].getStudentNo()) {
-
-                                                    cout << "Student ID: " << newReports[k].getStudentNo()
-                                                         << " ||Student Name: " << newReports[k].getFirstName()
-                                                         << " " << newReports[k].getLastName()
-                                                         << " ||Subject Name: " << newReports[k].getSubjectName()
-                                                         << " ||Score: " << newReports[k].getScore() << endl;
-                                                }
-                                            }
-                                            cout << "============================================================================================ \n";
+//                                            cout << "============================================================================================ \n";
+//                                            for (int k = 0; k < newReports.size(); k++) {
+//
+//                                                if (studentID == newReports[k].getStudentNo()) {
+//
+//                                                    cout << "Student ID: " << newReports[k].getStudentNo()
+//                                                         << " ||Student Name: " << newReports[k].getFirstName()
+//                                                         << " " << newReports[k].getLastName()
+//                                                         << " ||Subject Name: " << newReports[k].getSubjectName()
+//                                                         << " ||Score: " << newReports[k].getScore() << endl;
+//                                                }
+//                                            }
+//                                            cout << "============================================================================================ \n";
                                             break;
                                         case '5':
                                             break;
@@ -1082,9 +1159,9 @@ int main() {
                 break;
         }
     }
-    writeClass();
-    writeStudent();
-    writeSubject();
-    writeReport();
+//    writeClass();
+//    writeStudent();
+//    writeSubject();
+//    writeReport();
     return 0;
 }

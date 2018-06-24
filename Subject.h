@@ -15,6 +15,7 @@ private:
     int subjectID;
     string subjectName;
     char subjectType;
+
 public:
     Subject();
     Subject(int subjectID, const string &subjectName, char subjectType);

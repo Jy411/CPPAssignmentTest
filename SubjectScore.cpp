@@ -15,3 +15,13 @@ double SubjectScore::getScore() const {
 void SubjectScore::setScore(double score) {
     SubjectScore::score = score;
 }
+
+const Subject &SubjectScore::getSubject() const {
+    return subject;
+}
+
+void SubjectScore::setSubject(const Subject &subject) {
+    SubjectScore::subject = subject;
+}
+
+SubjectScore::SubjectScore(const Subject &subject, double score) : subject(subject), score(score) {}

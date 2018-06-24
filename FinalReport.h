@@ -30,11 +30,7 @@ private:
     int yearForm; // FORM 1 TO FORM 5
     char yearGrade; // Lower Secondary/Upper Secondary Art or Science
     // SUBJECTS STUDENT IS TAKING
-    int subjectID;
-    string subjectName;
-    char subjectType;
-    // SUBJECT SCORE
-    double score;
+    vector <SubjectScore> studentScore;
 public:
     FinalReport();
 
@@ -75,21 +71,21 @@ public:
 
     void setYearGrade(char yearGrade);
 
-    int getSubjectID() const;
-
-    void setSubjectID(int subjectID);
-
-    const string &getSubjectName() const;
-
-    void setSubjectName(const string &subjectName);
-
-    char getSubjectType() const;
-
-    void setSubjectType(char subjectType);
-
-    double getScore() const;
-
-    void setScore(double score);
+//    int getSubjectID() const;
+//
+//    void setSubjectID(int subjectID);
+//
+//    const string &getSubjectName() const;
+//
+//    void setSubjectName(const string &subjectName);
+//
+//    char getSubjectType() const;
+//
+//    void setSubjectType(char subjectType);
+//
+//    double getScore() const;
+//
+//    void setScore(double score);
 
 };
 
